@@ -1,0 +1,24 @@
+# API Keys and Environment Variables
+.env
+
+# Python Cache Files  
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual Environment
+venv/
+env/
+
+# IDE Files
+.vscode/
+.idea/
+*.swp
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+
+# Generated Content
+daily_generated_post_*.json
+daily_outputs/
