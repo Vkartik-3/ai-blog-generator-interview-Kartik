@@ -851,5 +851,3 @@ For questions, issues, or suggestions:
 ---
 
 **Built with ❤️ and AI-powered automation**
-
-*Last updated: June 8, 2025*
