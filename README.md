@@ -40,7 +40,7 @@ ai-blog-generator-interview-Kartik/
 ├── 🐍 app.py                             # Main Flask application
 ├── 🐍 seo_fetcher.py                     # SEO data module
 ├── 🐍 ai_generator.py                    # OpenAI integration
-├── 📊 daily_generated_post_*.json        # Auto-generated content
+├── 📊 daily_generated_post_*.json        # Auto-generated content files (4+ examples)
 ├── 📝 example_wireless_earbuds.html      # Sample output
 └── 📁 venv/                              # Virtual environment (not in git)
 ```
@@ -59,7 +59,7 @@ ai-blog-generator-interview-Kartik/
 
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/yourusername/ai-blog-generator-interview-Kartik.git
+   git clone https://github.com/KartikYourUsername/ai-blog-generator-interview-Kartik.git
    cd ai-blog-generator-interview-Kartik
    ```
 
@@ -98,6 +98,7 @@ ai-blog-generator-interview-Kartik/
       - GET /generate?keyword=<keyword>
       - GET /health
       - GET /
+      - GET /test-daily
    ⏰ Daily automation scheduled for 10:00 AM
    🌐 Server will run on: http://localhost:5001
    ```
@@ -169,7 +170,8 @@ GET /
   "endpoints": {
     "/generate?keyword=<keyword>": "Generate a blog post for the specified keyword",
     "/health": "Check API health status",
-    "/": "This help message"
+    "/": "This help message",
+    "/test-daily": "Manually trigger daily automation"
   },
   "example": "/generate?keyword=wireless%20earbuds"
 }
@@ -182,6 +184,13 @@ GET /test-daily
 
 Manually triggers the daily automation for testing purposes.
 
+**Response:**
+```json
+{
+  "message": "Daily generation triggered manually"
+}
+```
+
 ---
 
 ## 🧠 Detailed Technical Implementation
@@ -191,7 +200,7 @@ Manually triggers the daily automation for testing purposes.
 **Purpose:** Provides realistic SEO metrics for keywords to inform content generation strategy.
 
 **Key Features:**
-- Pre-configured data for 10+ high-volume keywords
+- Pre-configured data for 5 high-volume keywords
 - Intelligent fallback generation for unknown keywords
 - Realistic variation (±10%) to simulate real API responses
 - Keyword difficulty scoring (0-100 scale)
@@ -209,12 +218,11 @@ Manually triggers the daily automation for testing purposes.
 ```
 
 **Predefined Keywords:**
-- wireless earbuds (74K searches, 78% difficulty)
-- best laptops (135K searches, 82% difficulty)
-- coffee maker (60.5K searches, 65% difficulty)
-- running shoes (201K searches, 75% difficulty)
-- smartphone (823K searches, 88% difficulty)
-- [5 more keywords with realistic metrics]
+- wireless earbuds (74K searches, 78% difficulty, $1.85 CPC)
+- best laptops (135K searches, 82% difficulty, $2.15 CPC)
+- coffee maker (60.5K searches, 65% difficulty, $1.45 CPC)
+- running shoes (201K searches, 75% difficulty, $1.92 CPC)
+- smartphone (823K searches, 88% difficulty, $2.85 CPC)
 
 ### 2. AI Content Generation (`ai_generator.py`)
 
@@ -226,6 +234,19 @@ Manually triggers the daily automation for testing purposes.
 - Fallback content generation if API fails
 - Error handling with graceful degradation
 - Content length optimization (200-300 words for quick engagement)
+
+**Dependencies Explained:**
+```python
+# Core Dependencies in requirements.txt:
+# Flask==2.3.3          - Web framework for REST API endpoints and HTTP handling
+# openai==0.28.1        - OpenAI's official Python SDK for GPT-3.5-turbo integration  
+# python-dotenv==1.0.0  - Secure environment variable management for API keys
+# APScheduler==3.10.4   - Advanced Python Scheduler for daily automation with cron triggers
+# Werkzeug==2.3.7       - Flask's underlying WSGI toolkit for request processing
+# requests==2.31.0      - HTTP library for external API calls and future expansion
+```
+
+Version pinning ensures consistent behavior across different environments and prevents dependency conflicts.
 
 **OpenAI Integration:**
 ```python
@@ -452,6 +473,9 @@ curl "http://localhost:5001/generate?keyword=unknown%20product"
 # Test error handling
 curl "http://localhost:5001/generate"  # Missing keyword
 curl "http://localhost:5001/nonexistent"  # Invalid endpoint
+
+# Test daily automation
+curl "http://localhost:5001/test-daily"
 ```
 
 **2. SEO Module Testing**
@@ -759,7 +783,7 @@ python -c "from dotenv import load_dotenv; import os; load_dotenv(); print(os.ge
 
 1. **Fork the Repository**
    ```bash
-   git fork https://github.com/yourusername/ai-blog-generator-interview-Kartik.git
+   git fork https://github.com/KartikYourUsername/ai-blog-generator-interview-Kartik.git
    ```
 
 2. **Create Feature Branch**
