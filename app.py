@@ -126,18 +126,19 @@ def test_daily():
     return jsonify({"message": "Daily generation triggered manually"})
 
 if __name__ == "__main__":
-    # scheduler.add_job(
-    #     func=daily_blog_generation,
-    #     trigger=CronTrigger(hour=10, minute=0),
-    #     id='daily_blog_job',
-    #     name='Daily Blog Post Generation',
-    #     replace_existing=True
-    # )
+    scheduler.add_job(
+        func=daily_blog_generation,
+        trigger=CronTrigger(hour=10, minute=0),
+        id='daily_blog_job',
+        name='Daily Blog Post Generation',
+        replace_existing=True
+    )
     print("AI Blog Post Generator API starting...")
     print("Available endpoints:")
     print("   - GET /generate?keyword=<keyword>")
     print("   - GET /health")
     print("   - GET /")
+    print("   - GET /test-daily")
     print("Daily automation scheduled for 10:00 AM") 
     print("Server will run on: http://localhost:5001") 
     app.run(debug=True,host='0.0.0.0', port=5001)
